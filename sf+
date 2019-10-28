@@ -15,4 +15,4 @@ if [ -z "$CONSOLE_PATH" ]; then
     exit
 fi
 
-./php+ "$CONSOLE_PATH" "$@"
+php+ "$CONSOLE_PATH" "$@"

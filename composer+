@@ -10,4 +10,4 @@ fi
 #TODO
 #$COMPOSER_PATH self-update
 
-./php+ $COMPOSER_PATH "$@"
+php+ $COMPOSER_PATH "$@"
