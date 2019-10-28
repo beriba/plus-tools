@@ -1,0 +1,24 @@
+#!/bin/bash
+
+CONSOLE_PATHS=('bin/console' 'app/console')
+
+for CONSOLE_ELEM in "${CONSOLE_PATHS[@]}"
+do
+    if [ -f "$CONSOLE_ELEM" ]; then
+        CONSOLE_PATH=$CONSOLE_ELEM
+        break
+    fi
+done
+
+if [ -z "$CONSOLE_PATH" ]; then
+    echo "Symfony console not found"
+    exit
+fi
+
+INTERPRETER=php
+if [ -f ./composer.json ]; then
+    COMPOSER_PHP_VERSION=$(grep '"php"' composer.json | sed -ne 's/^.*"[^0-9]*\([0-9]\.[0-9]\).*".*/\1/p')
+    INTERPRETER=php$COMPOSER_PHP_VERSION
+fi
+
+$INTERPRETER "$CONSOLE_PATH" "$@"

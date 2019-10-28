@@ -1,0 +1,19 @@
+#!/bin/bash
+
+COMPOSER_PATH=/usr/local/bin/composer
+
+if [ ! -f $COMPOSER_PATH ]; then
+    echo "Composer not found in $COMPOSER_PATH\n"
+    exit
+fi
+
+#TODO
+#$COMPOSER_PATH self-update
+
+INTERPRETER=php
+if [ -f ./composer.json ]; then
+    COMPOSER_PHP_VERSION=`grep '"php"' composer.json | sed -ne 's/^.*"[^0-9]*\([0-9]\.[0-9]\).*".*/\1/p'`
+    INTERPRETER=php$COMPOSER_PHP_VERSION
+fi
+
+$INTERPRETER $COMPOSER_PATH "$@"
