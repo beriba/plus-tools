@@ -1,0 +1,13 @@
+#!/bin/bash
+
+COMPOSER_PATH=/usr/local/bin/composer1
+
+if [ ! -f $COMPOSER_PATH ]; then
+    echo "Composer not found in $COMPOSER_PATH\n"
+    exit
+fi
+
+#TODO
+#$COMPOSER_PATH self-update
+
+php+ $COMPOSER_PATH "$@"
